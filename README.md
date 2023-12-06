@@ -13,7 +13,7 @@
 
     "electron-builder": "^24.9.1", >>23.6.0
     "electron": "^26.0.0", >> 24.1.0
-    Node Version: v18.15.0
+    Node Version: v18.16.0
 
   -g @electron/osx-sign
   -g @electron/asar
