@@ -32,7 +32,8 @@ jobs:
    
     - name: install dependencies
       run: npm install
-   
+    - name: install macos-alias use DMG
+      run: npm install macos-alias
     - name: install electron
       run: npm install electron
     - name: run macos make
