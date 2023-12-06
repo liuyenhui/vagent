@@ -1,0 +1,71 @@
+name: Release
+on: push
+
+jobs:
+  publish_on_linux:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+    - uses: actions/checkout@v2       
+    - uses: actions/setup-node@master
+      with:
+        node-version: 18.16.0
+    - name: install dependencies
+      run: npm install
+    - name: install electron
+      run: npm install electron
+    - name: run buntu make
+      run: npm run make
+    - name: publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run publish
+
+  publish_on_mac:
+    runs-on: macos-latest
+    permissions: write-all
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+      with:
+        node-version: 18.16.0
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      # This is the version of the action for setting up Python, not the Python version.
+      uses: actions/setup-python@v4
+      with:
+        # Semantic version range syntax or exact version of a Python version
+        python-version: '3.9'
+        # Optional - x64 or x86 architecture, defaults to x64
+        architecture: 'x64'
+    - name: install dependencies
+      run: npm install
+    - name: install macos-alias use DMG
+      run: npm install macos-alias
+    - name: install electron
+      run: npm install electron
+    - name: run macos make
+      run: npm run make
+    - name: publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run publish
+      
+  publish_on_win:
+    runs-on: windows-latest
+    permissions: write-all
+    steps:
+    - uses: actions/checkout@v2       
+    - uses: actions/setup-node@master
+      with:
+        node-version: 18.16.0
+    - name: install dependencies
+      run: npm install
+    - name: install electron
+      run: npm install electron
+    - name: run windows make
+      run: npm run make
+    - name: publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run publish
