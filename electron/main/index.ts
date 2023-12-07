@@ -2,7 +2,8 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
 import { update } from './update'
-
+import { updateElectronApp,UpdateSourceType} from 'update-electron-app'
+import  log from 'electron-log/main'
 // windows install 
 if (require('electron-squirrel-startup')) app.quit();
 // The built directory structure
@@ -15,6 +16,12 @@ if (require('electron-squirrel-startup')) app.quit();
 // ├─┬ dist
 // │ └── index.html    > Electron-Renderer
 //
+log.initialize({ preload: true });
+log.info('Log from the main process');
+
+
+
+
 process.env.DIST_ELECTRON = join(__dirname, '../')
 process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
 process.env.VITE_PUBLIC = process.env.VITE_DEV_SERVER_URL
@@ -42,6 +49,14 @@ let win: BrowserWindow | null = null
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
+try {
+  updateElectronApp({
+    updateInterval: '5 minutes',//'1 hour',
+    logger: log
+  });
+} catch(error) {
+  log.info(`updateElectronApp fild[${error}]`);
+}
 
 async function createWindow() {
   win = new BrowserWindow({

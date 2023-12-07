@@ -46,7 +46,7 @@ module.exports = {
           owner: 'liuyenhui',
           name: 'vagent'
         },
-        prerelease: false,
+        prerelease: true,
         draft: true
       }
     }
