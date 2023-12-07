@@ -1,7 +1,6 @@
 {
   "name": "vagent",
   "version": "0.0.5",
-  "productName": "vagent",
   "main": "dist-electron/main/index.js",
   "description": "Open AI agent",
   "author": "liuyenhui",

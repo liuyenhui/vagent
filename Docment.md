@@ -121,3 +121,7 @@ jobs:
 
      - name: install macos-alias use DMG
       run: npm install macos-alias
+
+
+      mac os make fild delete 
+        "productName": "vagent",
