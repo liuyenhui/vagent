@@ -32,3 +32,8 @@ Windows 10 安装或打开应用程序、文件出现： “无法成功完成�
 5、找到并打开 ”保护历史记录“
 
 6、找到刚刚被阻止的操作并选择操作 ”还原“ 或 ”允许“ 再重新安装或打开应用程序即
+
+log:
+on Linux: ~/. config/vagent/logs/main. log.
+on macOS: ~/Library/Logs/vagent/main. log.
+on Windows: %USERPROFILE%\AppData\Roaming\vagent\logs\main. log.

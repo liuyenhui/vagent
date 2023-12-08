@@ -20,7 +20,7 @@
     "e2e": "playwright test",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "tsc && vite build && electron-forge make",
+    "make": "tsc && vite build && electron-forge make --publish=release",
     "publish": "electron-forge publish"
   },
   "dependencies": {

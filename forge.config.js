@@ -40,15 +40,18 @@ module.exports = {
   ],
   publishers: [
     {
+      
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
           owner: 'liuyenhui',
           name: 'vagent'
         },
-        prerelease: true,
+        release:true,
+        prerelease: false,
         draft: true
       }
+      
     }
   ]
 };
