@@ -4,6 +4,18 @@ import { join } from 'node:path'
 import { update } from './update'
 import { updateElectronApp,UpdateSourceType} from 'update-electron-app'
 import  log from 'electron-log/main'
+import {message} from './message'
+
+// 全局定义api
+declare  global {
+  interface Window {
+    api:any
+  }
+}
+
+
+log.info(`version:${app.getVersion()}`)
+
 // windows install 
 if (require('electron-squirrel-startup')) app.quit();
 // The built directory structure
@@ -71,6 +83,7 @@ async function createWindow() {
       contextIsolation: false,
     },
   })
+  
 
   if (url) { // electron-vite-vue#298
     win.loadURL(url)
@@ -82,7 +95,8 @@ async function createWindow() {
 
   // Test actively push message to the Electron-Renderer
   win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', new Date().toLocaleString())
+    // 完成渲染后发送消息显示版本
+    win?.webContents.send('main-msg-version', {version:app.getVersion()})
   })
 
   // Make all links open with the browser, not with the application
@@ -90,6 +104,10 @@ async function createWindow() {
     if (url.startsWith('https:')) shell.openExternal(url)
     return { action: 'deny' }
   })
+
+
+
+
 
   // Apply electron-updater
   update(win)
@@ -119,6 +137,8 @@ app.on('activate', () => {
   }
 })
 
+
+message()
 // New window example arg: new windows url
 ipcMain.handle('open-win', (_, arg) => {
   const childWindow = new BrowserWindow({

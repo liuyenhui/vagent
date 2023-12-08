@@ -1,3 +1,11 @@
+import { app } from "electron";
+
+// 定义全局载入window.api 进程通讯使用 
+// const ver = app.getVersion()
+window.api = {
+  version:()=>{return 'beijing'}
+};
+
 function domReady(condition: DocumentReadyState[] = ['complete', 'interactive']) {
   return new Promise(resolve => {
     if (condition.includes(document.readyState)) {
