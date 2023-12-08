@@ -4,57 +4,87 @@ import logoVite from './assets/logo-vite.svg'
 import logoElectron from './assets/logo-electron.svg'
 import './App.css'
 import { ipcRenderer } from 'electron'
+import '@fontsource/inter';
+
+
 import { message } from 'electron/main/message'
 
+import * as React from 'react';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
+import Link from '@mui/joy/Link';
 
-console.log(window.api.version())
-
-console.log('[App.tsx]', `Hello world from Electron ${process.versions.electron}!`)
 
 
-
-ipcRenderer.on('asynchronous-message', function (evt, message) {
-  
-  console.log(message); // Returns: {'SAVED': 'File Saved'}
-});
-
-function App() {
-  const [count, setCount] = useState(0)
-  const [version,setVersion] = useState('')
-  // 接收主进程的版本消息
-  ipcRenderer.on('main-msg-version',(evt,message)=>{
-    setVersion(message.version)
-  })
+ function LoginFinal() {
   return (
-    <div className='App'>
-      <div className='logo-box'>
-        <a href='https://github.com/liuyenhui/vagent' target='_blank'>
-          <img src={logoVite} className='logo vite' alt='Electron + Vite logo' />
-          <img src={logoElectron} className='logo electron' alt='Electron + Vite logo' />
-        </a>
-      </div>
-      <h1>Open AI Agent {version}</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) =>{ 
-            // 发送消息到主进程
-            ipcRenderer.send('msg1', '这是一条来自于Renderer的消息')
-            return count + 1
-          })}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>npm install</code> and save to test agent
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Open AI logo to learn more
-      </p>
-      <div className='flex-center'>
-        Place static files into the<code>/public</code> folder <img style={{ width: '5em' }} src='./node.svg' alt='Node logo' />
-      </div>
-      <UpdateElectron />
-    </div>
-  )
+    <CssVarsProvider>
+      <main>
+        <Sheet
+          sx={{
+            width: 300,
+            mx: 'auto', // margin left & right
+            my: 4, // margin top & bottom
+            py: 3, // padding top & bottom
+            px: 2, // padding left & right
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2,
+            borderRadius: 'sm',
+            boxShadow: 'md',
+          }}
+          variant="outlined"
+        >
+          <div>
+            <Typography level="h4" component="h1">
+              <b>Welcome!</b>
+            </Typography>
+            <Typography level="body-sm">Sign in to continue.</Typography>
+          </div>
+          <FormControl>
+            <FormLabel>Email</FormLabel>
+            <Input
+              // html input attribute
+              name="email"
+              type="email"
+              placeholder="johndoe@email.com"
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel>Password</FormLabel>
+            <Input
+              // html input attribute
+              name="password"
+              type="password"
+              placeholder="password"
+            />
+          </FormControl>
+
+          <Button sx={{ mt: 1 /* margin top */ }}>Log in</Button>
+          <Typography
+            endDecorator={<Link >Sign up</Link>}
+            fontSize="sm"
+            sx={{ alignSelf: 'center' }}
+          >
+            Don&apos;t have an account?
+          </Typography>
+        </Sheet>
+      </main>
+    </CssVarsProvider>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <div className='App'>
+      <LoginFinal/>
+    </div>
+
+  )
+}
+export default App;

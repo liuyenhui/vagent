@@ -109,8 +109,19 @@ async function createWindow() {
 
 
 
-  // Apply electron-updater
-  update(win)
+  /*
+    使用第三方的自动更新 electron-updater
+    当前问题
+    1. forge 发布到github,编译时无法生成 latest.yml
+    2. forge github 发布必须配合官方支持的autoUpdate
+    3. 若使用官方autoUpdate 必须要有代码签名
+    4. 使用三方的electron-updater macos同意需要代码签名
+
+    & 后期方法,使用签名,github发布,使用官方的autoUpdate
+    ! 当前关闭自动更新 update(win)
+  */
+
+  // update(win)
 }
 
 app.whenReady().then(createWindow)
