@@ -1,7 +1,12 @@
 import { app } from "electron";
 
+// 全局定义api
+declare  global {
+  interface Window {
+    api:any
+  }
+}
 // 定义全局载入window.api 进程通讯使用 
-// const ver = app.getVersion()
 window.api = {
   version:()=>{return 'beijing'}
 };

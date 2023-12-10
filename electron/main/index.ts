@@ -5,13 +5,7 @@ import { update } from './update'
 // import { updateElectronApp,UpdateSourceType} from 'update-electron-app'
 import  log from 'electron-log/main'
 import {message} from './message'
-
-// 全局定义api
-declare  global {
-  interface Window {
-    api:any
-  }
-}
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 
 log.info(`version:${app.getVersion()}`)
@@ -82,7 +76,10 @@ async function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
+    minWidth:600,
+    minHeight:500,
   })
+  win.setBackgroundColor('#171A1C'); // 设置背景色为JoyUI dark样式
   
 
   if (url) { // electron-vite-vue#298
