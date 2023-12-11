@@ -3,16 +3,17 @@ import { styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import { Stack } from '@mui/joy';
-import FooterBar from '@/components/footerbar/footerbar'
-import Content from '@/components/content/content';
+import FooterBar from '@/components/layout/footerbar/footerbar'
+import Content from '@/components/layout/content/content';
 
 export default function Layout() {
   return (
-    <Box sx={{ width: 1 , backgroundColor:"royalblue"}} display="grid" >
+    <Box sx={{ width: 1 }} display="grid" >
       <Stack
         direction="column"
-        justifyContent="space-between"
         alignItems="stretch"
+        justifyContent="flex-start"
+        
       >
         <Content/>
         <FooterBar/>

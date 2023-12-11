@@ -1,0 +1,7 @@
+{
+  "name": "名字",
+  "todos": {
+    "allCompleted": "全部已完成",
+    "allNotCompleted": "全部未完成"
+  }
+}

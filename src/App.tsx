@@ -15,15 +15,12 @@ import Layout from './components/layout/layout'
 function App() {
   return (
     <CssVarsProvider defaultMode='dark'>
-     
         <Box  sx={{
           bgcolor: 'background.paper',
-          backgroundColor:'red',
-          boxShadow: 1,
-          borderRadius: 1,
           m:0,
           p:0,
-          width:'100%'
+          width:1,
+          height:1
           
         }}>
           <Layout/>

@@ -1,0 +1,8 @@
+{
+    "name": "NAME",
+    
+    "todos": {
+      "allCompleted": "All completed",
+      "allNotCompleted": "All not completed"
+    }
+} 
