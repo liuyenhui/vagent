@@ -4,7 +4,7 @@ import ListView from "./list/listview"
 
 export default function Left(){
     return(
-        <Box sx={{width:"300px",maxWidth:"300px", backgroundColor:"red"}}>
+        <Box sx={{width:"200px",minWidth:"200px", backgroundColor:"red"}}>
             <Stack
                 direction="column"
                 justifyContent="flex-start"

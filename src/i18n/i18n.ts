@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next'
 import en from './locales/en.json'
 import zh from './locales/zh.json'
 
-const defaultLanguage = 'zh'
+export const defaultLanguage = 'zh'
 
 export const defaultNamespace = 'default'
 

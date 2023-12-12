@@ -1,7 +1,15 @@
 {
-  "name": "名字",
+  "name": "AI助手",
   "todos": {
     "allCompleted": "全部已完成",
     "allNotCompleted": "全部未完成"
+  },
+  "list": {
+    "assisants":"AI助手",
+    "files":"云端文件",
+    "images":"AI图片"
+  },
+  "footer":{
+    "balance":"余额"
   }
 }

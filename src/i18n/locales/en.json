@@ -4,5 +4,13 @@
     "todos": {
       "allCompleted": "All completed",
       "allNotCompleted": "All not completed"
+    },
+    "list": {
+      "assisants":"AI Assisants",
+      "files":"Cloud Files",
+      "images":"AI Images"
+    },
+    "footer":{
+      "balance":"Balance"
     }
 } 

@@ -1,5 +1,7 @@
 import { Avatar, Box, Button, Card, Stack, Typography } from "@mui/joy"
 import iconfile from "@/assets/chatgpt.png"
+import i18n from 'i18next'
+
 export default function HeadView(){
     return (
         // <Box sx={{height:"auto",width:1,backgroundColor:"darkblue"}}>
@@ -13,7 +15,9 @@ export default function HeadView(){
                 >
                     <Button
                         color="neutral"
-                        onClick={function(){}}
+                        onClick={function(){
+                            i18n.changeLanguage('en');
+                        }}
                         size="sm"
                         variant="outlined"
                         sx={{mb:"3px" }}
