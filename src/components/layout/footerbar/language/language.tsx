@@ -10,6 +10,7 @@ export default function Language(){
     return (
         <Box sx={{m:0}}>
             <Select
+                variant="soft"
                 defaultValue="zh"
                 indicator={<KeyboardArrowUp/>}
                 size="sm"

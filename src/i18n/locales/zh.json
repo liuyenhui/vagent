@@ -11,5 +11,9 @@
   },
   "footer":{
     "balance":"余额"
+  },
+  "chat":{
+    "sendmessage":"发送",
+    "sendfiles":"发送文件:"
   }
 }

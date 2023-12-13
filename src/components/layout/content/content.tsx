@@ -8,6 +8,7 @@ export default function Content(){
           direction="row"
           justifyContent="center"
           alignItems="center"
+          width="100%"
         >
           <Left/>
           <Right/>

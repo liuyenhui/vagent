@@ -1,11 +1,12 @@
 import { Avatar, Box, Button, Card, Stack, Typography } from "@mui/joy"
 import iconfile from "@/assets/chatgpt.png"
 import i18n from 'i18next'
+import { LEFT_HEAD_HEIGHT } from "@/components/public/constants"
 
 export default function HeadView(){
     return (
-        // <Box sx={{height:"auto",width:1,backgroundColor:"darkblue"}}>
-            <Card sx={{height:"auto",m:0,p:"2px"}} orientation="horizontal" >
+        <Box height={LEFT_HEAD_HEIGHT}>
+            <Card sx={{mt:"2px",p:0}} orientation="horizontal">
                 <Avatar alt="Remy Sharp" sx={{m:1}} src={iconfile} />
                 <Stack
                     direction="column"
@@ -16,7 +17,8 @@ export default function HeadView(){
                     <Button
                         color="neutral"
                         onClick={function(){
-                            i18n.changeLanguage('en');
+                            // i18n.changeLanguage('en');
+                            console.log("gpt click!")
                         }}
                         size="sm"
                         variant="outlined"
@@ -34,6 +36,6 @@ export default function HeadView(){
                     </Typography>
                 </Stack>
             </Card>
-        // </Box>
+        </Box>
     )
 }

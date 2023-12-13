@@ -1,94 +1,109 @@
-import * as React from 'react';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import FormControl from '@mui/joy/FormControl';
-import Textarea from '@mui/joy/Textarea';
-import { IconButton, Stack } from '@mui/joy';
+import { Check, FormatBold, FormatItalic,Send} from "@mui/icons-material";
+import { Box, Button, Chip, IconButton, ListItemDecorator, Menu, MenuItem, Stack, Textarea, Typography } from "@mui/joy";
+import React from "react";
+import { useTranslation} from 'react-i18next'
 
-import FormatBoldRoundedIcon from '@mui/icons-material/FormatBoldRounded';
-import FormatItalicRoundedIcon from '@mui/icons-material/FormatItalicRounded';
-import StrikethroughSRoundedIcon from '@mui/icons-material/StrikethroughSRounded';
-import FormatListBulletedRoundedIcon from '@mui/icons-material/FormatListBulletedRounded';
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
 
-export type MessageInputProps = {
-  textAreaValue: string;
-  setTextAreaValue: (value: string) => void;
-  onSubmit: () => void;
-};
-
-export default function MessageInput(props: MessageInputProps) {
-  const { textAreaValue, setTextAreaValue, onSubmit } = props;
-  const textAreaRef = React.useRef<HTMLDivElement>(null);
-  const handleClick = () => {
-    if (textAreaValue.trim() !== '') {
-      onSubmit();
-      setTextAreaValue('');
-    }
-  };
+export default function MessageInput(){
+  const { t } = useTranslation()
+  const [italic, setItalic] = React.useState(false);
+  const [fontWeight, setFontWeight] = React.useState('normal');
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   return (
-    <Box sx={{ px: 2, pb: 3 }}>
-      <FormControl>
-        <Textarea
-          placeholder="Type something here…"
-          aria-label="Message"
-          ref={textAreaRef}
-          onChange={(e) => {
-            setTextAreaValue(e.target.value);
-          }}
-          value={textAreaValue}
-          minRows={3}
-          maxRows={10}
-          endDecorator={
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              flexGrow={1}
-              sx={{
-                py: 1,
-                pr: 1,
-                borderTop: '1px solid',
-                borderColor: 'divider',
-              }}
-            >
-              <div>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatBoldRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatItalicRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <StrikethroughSRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="plain" color="neutral">
-                  <FormatListBulletedRoundedIcon />
-                </IconButton>
-              </div>
-              <Button
-                size="sm"
-                color="primary"
-                sx={{ alignSelf: 'center', borderRadius: 'sm' }}
-                endDecorator={<SendRoundedIcon />}
-                onClick={handleClick}
+      <Textarea
+        placeholder="Type something here…"
+        minRows={5}
+        maxRows={5}
+        endDecorator={
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 'var(--Textarea-paddingBlock)',
+              pt: 'var(--Textarea-paddingBlock)',
+              borderTop: '1px solid',
+              borderColor: 'divider',
+              flex: 'auto',
+              alignItems:'auto',
+              justifyContent:'center',
+            }}
+          >
+            <Typography level="body-sm" variant="plain" color="primary" mt="5px">
+            {t("chat.sendfiles")}
+            </Typography>
+            <Chip variant="plain" color="primary" size="sm" sx={{height:"auto",mb:"5px", ml: 'auto' }} onClick={()=>{}}>
+              <Stack
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+                spacing={0.5}
               >
-                Send
-              </Button>
-            </Stack>
-          }
-          onKeyDown={(event) => {
-            if (event.key === 'Enter' && (event.metaKey || event.ctrlKey)) {
-              handleClick();
-            }
-          }}
-          sx={{
-            '& textarea:first-of-type': {
-              minHeight: 72,
-            },
-          }}
-        />
-      </FormControl>
-    </Box>
+                <Send sx={{mr:"1px"}}/>
+                <Typography level="body-sm" variant="plain" color="primary">
+                  {t("chat.sendmessage")}
+                </Typography>
+                
+                
+              </Stack>
+            </Chip>
+          </Box>
+        }
+        sx={{
+          minWidth: 300,
+          fontWeight,
+          fontStyle: italic ? 'italic' : 'initial',
+        }}
+      />
   );
+}
+
+ function MessageInput1(){
+  const [italic, setItalic] = React.useState(false);
+  const [fontWeight, setFontWeight] = React.useState('normal');
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  return (
+    <Textarea
+        placeholder="Type something here…"
+        minRows={3}
+        maxRows={3}
+        endDecorator={
+          <Box
+            sx={{
+              display: 'flex',
+              p:0,
+              gap: 'var(--Textarea-paddingBlock)',
+              pt: 'var(--Textarea-paddingBlock)',
+              borderTop: '1px solid',
+              borderColor: 'divider',
+              flex: 'auto',
+            }}
+          >
+            <Chip variant="plain" size="sm" color="neutral">
+
+             Files
+            {/* <IconButton
+              variant="plain"
+              color="neutral"
+              onClick={(event) => {
+                console.log(event)
+              }}
+            > */}
+              
+              
+            {/* </IconButton> */}
+            </Chip>
+        
+            <Chip variant="plain" size="sm" sx={{ ml: 'auto' }} onClick={()=>{}}>
+              Send Message
+            </Chip>
+            {/* <Button sx={{ ml: 'auto' }}>Send</Button> */}
+          </Box>
+        }
+        sx={{
+          width:"100%",
+          fontWeight,
+          fontStyle: italic ? 'italic' : 'initial',
+        }}
+      />
+  )
 }

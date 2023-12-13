@@ -12,5 +12,9 @@
     },
     "footer":{
       "balance":"Balance"
+    },
+    "chat":{
+      "sendmessage":"Send Message",
+      "sendfiles":"Send Files:"
     }
 } 
