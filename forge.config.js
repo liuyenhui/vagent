@@ -2,8 +2,8 @@
 module.exports = {
   packagerConfig: {
     asar: false,
-    dereference: true
-
+    dereference: true,
+    extraResource: ['./extraResources/tmp.json','./extraResources/assistants']
   },
   rebuildConfig: {},
   makers: [
