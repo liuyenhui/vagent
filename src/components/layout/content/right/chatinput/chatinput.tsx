@@ -1,6 +1,6 @@
 import { Box, Sheet, Stack, Textarea } from "@mui/joy";
 import { RIGHT_INPUT_HEIGHT } from "@/components/public/constants";
-import MessageInput from "./messageinput/messageinput";
+import MessageInput from "./messageinput/messageinput"
 export default function ChatInput(){
     return (
         
