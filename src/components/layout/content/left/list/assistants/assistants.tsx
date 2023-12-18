@@ -3,6 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/
 import PeopleOutline from "@mui/icons-material/PeopleOutline"
 import { useState } from "react";
 import { useTranslation} from 'react-i18next'
+import {AssistantCard } from './assistantcard/assistantcard'
 
 export default function AssistantItem(props:any){
     const { t } = useTranslation()
@@ -22,7 +23,10 @@ export default function AssistantItem(props:any){
             </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{height:"auto"}}>
-            对话 Excel表 教师助手
+          <AssistantCard Name="对话"></AssistantCard>
+          <AssistantCard Name="Excel助手"></AssistantCard>
+          <AssistantCard Name="教师助手"></AssistantCard>
+              
         </AccordionDetails>
       </Accordion>
     )

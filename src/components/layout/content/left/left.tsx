@@ -4,7 +4,10 @@ import ListView from "./list/listview"
 import { LEFT_WIDTH } from "@/components/public/constants";
 import { useState } from "react";
 export default function Left(){
+    
     const [ml,setMl] = useState("0px")
+    // 触发隐藏左边栏
+    
     // setTimeout(() => {
     //     setMl(`-${LEFT_WIDTH}px`);
 

@@ -33,6 +33,9 @@
         "--remote-debugging-port=9229",
         "."
       ],
+      "env": {
+        "VSCODE_DEBUG": "true",
+      },
       "envFile": "${workspaceFolder}/.vscode/.debug.env",
       "console": "integratedTerminal"
     },

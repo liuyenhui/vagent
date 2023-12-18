@@ -1,0 +1,47 @@
+{
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Electron Main",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "args": [
+        "--remote-debugging-port=9222",//显式指定调试端口，用于`Electron Renderer`的`port`
+        "${workspaceFolder}"//此项没配置会导致最终启动的是electron自带的默认示例
+      ],
+
+      "skipFiles": [
+        "<node_internals>/**" // 这里并不清楚实际效果，但看到的示例里有，那就留着没动了。想具体了解可以去看vsc官网
+      ],
+      // "sourceMaps": true, // 设为true，以便直接在源文件（xx.ts，或者webpack之类的工具打包、压缩前的源文件）打断点。当然，这需要输出给electron运行的js文件中包含source-map      
+    },
+    {
+      "name": "Electron Renderer",
+      "port": 9222,
+      "request": "attach",
+      "type": "chrome",
+      "timeout": 60000,
+      "webRoot": "${workspaceFolder}/src",//映射渲染端的根路径
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceRoot}/node_modules/**",
+        "${workspaceRoot}/dist-electron/**",
+        // Skip files in host(VITE_DEV_SERVER_URL)
+        "http://127.0.0.1:7777/**"
+      ]
+    },
+    
+  ],
+  "compounds": [
+    {
+      "name": "All",
+      "configurations": [
+        "Electron Main",
+        "Electron Renderer",
+      ]
+    }
+  ]
+}

@@ -5,6 +5,9 @@ import { update } from './update'
 // import { updateElectronApp,UpdateSourceType} from 'update-electron-app'
 import  log from 'electron-log/main'
 import {message} from './message'
+import * as fs from 'fs';
+import { AssistantsLoad } from './assistantsload'
+
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 
@@ -51,10 +54,28 @@ if (!app.requestSingleInstanceLock()) {
 // process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 let win: BrowserWindow | null = null
-// Here, you can also use other preload
+// preload预加载可远程执行,可用于Function热更新
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
+
+
+const resourcesPath = process.env.VSCODE_DEBUG ? join(process.env.PWD as string,'extraResources') : process.resourcesPath
+// 读取资源文件,暂未使用
+const tempjson=join(resourcesPath as string,'tmp.json')
+try {
+   const tempstr = fs.readFileSync(tempjson,'utf-8')
+   log.info(tempstr)
+  
+} catch (error) {
+  log.info(error)
+}
+// 读取Assistants
+const assistantlist = AssistantsLoad(resourcesPath)
+
+
+
+// 以下代码处理自动更新
 // try {
 //   updateElectronApp({
 //     updateInterval: '5 minutes',//'1 hour',
@@ -65,6 +86,7 @@ const indexHtml = join(process.env.DIST, 'index.html')
 // }
 
 async function createWindow() {
+
   win = new BrowserWindow({
     title: 'Main window',
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
@@ -90,10 +112,15 @@ async function createWindow() {
     win.loadFile(indexHtml)
   }
 
+  
+
   // Test actively push message to the Electron-Renderer
-  win.webContents.on('did-finish-load', () => {
+  win.webContents.once('did-finish-load', () => {
     // 完成渲染后发送消息显示版本
     win?.webContents.send('main-msg-version', {version:app.getVersion()})
+    console.log('send assistant-list')
+    win?.webContents.send('assistant-list', assistantlist)
+   
   })
 
   // Make all links open with the browser, not with the application
@@ -145,8 +172,11 @@ app.on('activate', () => {
   }
 })
 
-
+// 主进程发送消息测试
 message()
+// 发送助手信息消息
+
+
 // New window example arg: new windows url
 ipcMain.handle('open-win', (_, arg) => {
   const childWindow = new BrowserWindow({

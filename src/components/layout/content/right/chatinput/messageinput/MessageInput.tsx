@@ -1,19 +1,48 @@
 import { Check, FormatBold, FormatItalic,Send} from "@mui/icons-material";
 import { Box, Button, Chip, IconButton, ListItemDecorator, Menu, MenuItem, Stack, Textarea, Typography } from "@mui/joy";
-import React from "react";
+import React,{ ChangeEvent, useContext, useRef, useState } from "react";
 import { useTranslation} from 'react-i18next'
+import { RIGHT_INPUT_HEIGHT } from "@/components/public/constants";
 
 
 export default function MessageInput(){
   const { t } = useTranslation()
-  const [italic, setItalic] = React.useState(false);
-  const [fontWeight, setFontWeight] = React.useState('normal');
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  // const SysInfo = useContext(SystemContext)
+  
+  
+  const [value, setValue] = useState("");
+  
+  // 提交响应函数
+  function submit(){
+    // const msg:System.Message = {
+    //   id:"99",
+    //   type:"User",
+    //   value:value
+    // }
+    // messages?.push(msg)
+    // info.SystemData.Email = value
+    // SysInfo.setSysinfo(info);
+    // (SysInfo.Email as any).setEmail("北京")    
+  }
+
   return (
       <Textarea
         placeholder="Type something here…"
-        minRows={5}
-        maxRows={5}
+        minRows={3}
+        maxRows={3}
+        // 监听事件同步更改value状态
+        onChange={(e) => setValue(e.target.value)}
+        
+        onKeyDown={(event)=>{
+          // console.log(event.key)
+        }}
+        sx={{
+          /// <reference path="" />
+          
+          width:"100%", 
+          height:RIGHT_INPUT_HEIGHT,
+        }}
+        // value={msg}
         endDecorator={
           <Box
             sx={{
@@ -30,7 +59,15 @@ export default function MessageInput(){
             <Typography level="body-sm" variant="plain" color="primary" mt="5px">
             {t("chat.sendfiles")}
             </Typography>
-            <Chip variant="plain" color="primary" size="sm" sx={{height:"auto",mb:"5px", ml: 'auto' }} onClick={()=>{}}>
+            <Chip variant="plain" color="primary" size="sm" sx={{
+              height:"auto",
+              mb:"5px", 
+              ml: 'auto',
+            }} onClick={()=>{
+              console.log('submit')
+              // 提交
+              submit();
+            }}>
               <Stack
                 direction="row"
                 justifyContent="center"
@@ -41,69 +78,11 @@ export default function MessageInput(){
                 <Typography level="body-sm" variant="plain" color="primary">
                   {t("chat.sendmessage")}
                 </Typography>
-                
-                
               </Stack>
             </Chip>
           </Box>
         }
-        sx={{
-          minWidth: 300,
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
+        
       />
   );
-}
-
- function MessageInput1(){
-  const [italic, setItalic] = React.useState(false);
-  const [fontWeight, setFontWeight] = React.useState('normal');
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  return (
-    <Textarea
-        placeholder="Type something here…"
-        minRows={3}
-        maxRows={3}
-        endDecorator={
-          <Box
-            sx={{
-              display: 'flex',
-              p:0,
-              gap: 'var(--Textarea-paddingBlock)',
-              pt: 'var(--Textarea-paddingBlock)',
-              borderTop: '1px solid',
-              borderColor: 'divider',
-              flex: 'auto',
-            }}
-          >
-            <Chip variant="plain" size="sm" color="neutral">
-
-             Files
-            {/* <IconButton
-              variant="plain"
-              color="neutral"
-              onClick={(event) => {
-                console.log(event)
-              }}
-            > */}
-              
-              
-            {/* </IconButton> */}
-            </Chip>
-        
-            <Chip variant="plain" size="sm" sx={{ ml: 'auto' }} onClick={()=>{}}>
-              Send Message
-            </Chip>
-            {/* <Button sx={{ ml: 'auto' }}>Send</Button> */}
-          </Box>
-        }
-        sx={{
-          width:"100%",
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
-      />
-  )
 }

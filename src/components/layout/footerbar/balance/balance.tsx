@@ -1,8 +1,13 @@
 import AttachMoney from '@mui/icons-material/AttachMoney';
 import { Box, Link, Stack, Typography } from '@mui/joy';
 import { useTranslation} from 'react-i18next'
+import {SystemInfoStore} from '@/components/public/systemstore'
 
 export default function Balance(){
+    // const email = SystemInfoStore.getState().info.Email
+    const email = SystemInfoStore(state=>state.info.Email)
+
+
     const { t } = useTranslation()
     return(
         <Stack
@@ -17,6 +22,9 @@ export default function Balance(){
             <AttachMoney sx={{ fontSize: "16px" }} />
             <Typography fontSize="12px">
                     18.32
+            </Typography>
+            <Typography fontSize="12px" marginLeft="5px">
+                    {email}
             </Typography>
         </Stack>
     )

@@ -1,10 +1,11 @@
-import { Sheet } from "@mui/joy";
-
-export default function MessagePan(props:any){
-    const {children} = props
+import { Box, Sheet } from "@mui/joy";
+// <Sheet variant="plain" color="neutral" sx={{ height:1,p: 4 }}>
+// {children}
+// </Sheet>
+export default function MessagePan(props:{msg:string|undefined}){
     return(
-        <Sheet variant="outlined" color="neutral" sx={{ height:"100px",p: 4 }}>
-            {children}
-        </Sheet>
+        <Box  height="auto">
+            {props.msg}
+        </Box>
     )
 }

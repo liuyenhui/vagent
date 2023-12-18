@@ -10,4 +10,8 @@ export  function message(){
     })
 } 
 
+export function postAssistantList(assistantlist:Array<unknown>){
+    
+}
+
 

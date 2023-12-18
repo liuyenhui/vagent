@@ -15,7 +15,7 @@ export default function ChatHead(){
                     // backgroundColor:"darkgreen"
                 }}
             >   
-            Sheet-Stack
+                ChatHead
             </Stack>
         </Sheet>
     )

@@ -1,6 +1,6 @@
 import {  AccordionGroup, Box, Sheet } from '@mui/joy';
 import AccordionItem from '@/components/public/AccordionItem'; 
-import AssistantItem from './assistant/assistant';
+import AssistantItem from './assistants/assistants';
 import Files from './files/files';
 import Images from './images/images';
 

@@ -3,10 +3,8 @@ import Option from '@mui/joy/Option';
 import { defaultLanguage } from "@/i18n/i18n";
 import { Height, KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import i18n from 'i18next'
-
-
-
 export default function Language(){ 
+    
     return (
         <Box sx={{m:0}}>
             <Select
