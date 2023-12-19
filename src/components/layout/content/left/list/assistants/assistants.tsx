@@ -3,7 +3,9 @@ import { Accordion, AccordionDetails, AccordionSummary, Typography } from "@mui/
 import PeopleOutline from "@mui/icons-material/PeopleOutline"
 import { useState } from "react";
 import { useTranslation} from 'react-i18next'
-import {AssistantCard } from './assistantcard/assistantcard'
+import { AssistantCard } from './assistantcard/assistantcard' 
+
+// import {AssistantCard } from "@/components/layout/content/left/list/assistants/assistantcard/assistantcard"
 
 export default function AssistantItem(props:any){
     const { t } = useTranslation()
